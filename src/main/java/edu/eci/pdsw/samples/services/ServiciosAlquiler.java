@@ -15,16 +15,16 @@ public abstract class ServiciosAlquiler {
 
     private static ServiciosAlquiler instance = new ServiciosAlquilerItemsStub();
 
-
     public static ServiciosAlquiler getInstance() throws RuntimeException {
         return instance;
     }
+
     protected ServiciosAlquiler() {
-        
+
     }
 
     public abstract int valorMultaRetrasoxDia();
-    
+
     public abstract Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler;
 
     /**
@@ -76,7 +76,16 @@ public abstract class ServiciosAlquiler {
      */
     public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
 
+    /**
+     * @obj registrar un cliente en el sistema
+     * @param p el nuevo cliente
+     * @pre p!=null
+     * @pos el cliente queda disponible para futuros alquileres
+     * @throws ExcepcionServiciosAlquiler si el cliente ya se encuentra
+     * registrado
+     */
     public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
+
 
     /**
      * @obj registrar la devolucion de un item
