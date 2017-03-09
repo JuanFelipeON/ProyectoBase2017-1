@@ -5,7 +5,48 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head></h:head>
     <h:body>
-        
-  
+        <h:form id="clientes">
+            <p:dataTable var="cliente" value="#{AlquilerItems.listaClientes}" 
+                         selectionMode="single" selection="#{AlquilerItems.cliente}" 
+                         rowKey="#{cliente.documento}">
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{cliente.nombre}" />
+                </p:column>
+                <p:column headerText="Documento">
+                    <h:outputText value="#{cliente.documento}" />
+                </p:column>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{cliente.telefono}" />
+                </p:column>
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{cliente.direccion}" />
+                </p:column>
+                <p:column headerText="email">
+                    <h:outputText value="#{cliente.email}" />
+                </p:column>
+                <p:column headerText="Vetado">
+                    <h:outputText value="#{cliente.vetado}" />
+                </p:column>
+                <p:commandButton value="Inspeccionar" action="RegistroClienteItem"/>
+            </p:dataTable>
+            <br/>
+            Agregar nuevo Cliente: 
+            NOMBRE:
+            <h:inputText value="#{AlquilerItems.nombre}"/>
+            DOCUMENTO:
+            <h:inputText value="#{AlquilerItems.documento}"/>
+            TELEFONO:
+            <h:inputText value="#{AlquilerItems.telefono}"/>
+            DIRECCION:
+            <h:inputText value="#{AlquilerItems.direccion}"/>
+            EMAIL:
+            <h:inputText value="#{AlquilerItems.email}"/>
+
+            <p:commandButton value="Cliente Nuevo" actionListener="#{AlquilerItems.clienteNuevo()}" update="clientes"/>
+
+
+        </h:form>
+
     </h:body>
 </html>
