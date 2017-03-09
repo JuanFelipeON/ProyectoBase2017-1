@@ -27,7 +27,9 @@ import static org.junit.Assert.*;
  * CE1: Multas hechas a devolciones realizadas en fechas posteriores
  * a la limite. (multa multa_diaria*dias_retraso)
  * 
+ * CE2: La identificacion del cliente debe ser valida.
  * 
+ * CE3: El numero de renta debe ser mayor a 1.
  * 
  */
 public class AlquilerTest {
@@ -62,19 +64,35 @@ public class AlquilerTest {
     public void CE1Test() throws ExcepcionServiciosAlquiler{
         ServiciosAlquiler sa=ServiciosAlquilerItemsStub.getInstance();
         
-        Item i1=new Item(sa.consultarTipoItem(1), 55, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");        
+        Item i1=new Item(sa.consultarTipoItem(1), 66, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");        
         sa.registrarCliente(new Cliente("Juan Perez",9843,"24234","calle 123","aa@gmail.com"));
         sa.registrarItem(i1);
                 
-        Item item=sa.consultarItem(55);
+        Item item=sa.consultarItem(66);
         
         sa.registrarAlquilerCliente(java.sql.Date.valueOf("2005-12-20"), 9843, item, 5);
         //prueba: 3 dias de retraso
         assertEquals("No se calcula correctamente la multa "
                 + "cuando la devolucion se realiza varios dias despues del limite."
-                ,sa.valorMultaRetrasoxDia()*3,sa.consultarMultaAlquiler(55, java.sql.Date.valueOf("2005-12-28")));
+                ,sa.valorMultaRetrasoxDia()*3,sa.consultarMultaAlquiler(66, java.sql.Date.valueOf("2005-12-28")));
                 
     }
+    
+    @Test
+    public void CE2Test() throws ExcepcionServiciosAlquiler{
+        ServiciosAlquiler sa=ServiciosAlquilerItemsStub.getInstance();
+        
+        Item i1=new Item(sa.consultarTipoItem(1), 55, "Los 4 Fantasticos", "Los 4 Fantásticos  es una película de superhéroes  basada en la serie de cómic homónima de Marvel.", java.sql.Date.valueOf("2005-06-08"), 2000, "DVD", "Ciencia Ficcion");        
+        sa.registrarCliente(new Cliente("Juan Perez",1212,"24234","calle 123","aa@gmail.com"));
+        sa.registrarItem(i1);
+                
+        Item item=sa.consultarItem(55);
+        
+        sa.registrarAlquilerCliente(java.sql.Date.valueOf("2005-12-20"), 1212, item, 0);
+        //prueba: dias de alquiler
+        assertEquals("El cliente tiene un numero de identificacion valido", 0, sa.consultarCliente(1212).getDocumento());
+    }        
+    
     
     
     
