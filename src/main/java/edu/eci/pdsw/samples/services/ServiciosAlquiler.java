@@ -71,8 +71,7 @@ public abstract class ServiciosAlquiler {
      * @param numdias el numero de dias que se le prestara el item
      * @pos el item ya no debe estar disponible, y debe estar asignado al
      * cliente
-     * @throws ExcepcionXX si el identificador no corresponde con un item, o si
-     * el mismo ya esta alquilado
+     * @throws ExcepcionServiciosAlquiler si No existe el cliente con el documento
      */
     public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
 
@@ -81,7 +80,8 @@ public abstract class ServiciosAlquiler {
      * @param p el nuevo cliente
      * @pre p!=null
      * @pos el cliente queda disponible para futuros alquileres
-     * @throws ExcepcionServiciosAlquiler No existe el cliente con el documento
+     * @throws ExcepcionServiciosAlquiler si el cliente ya se encuentra
+     * registrado 
      */
     public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
 
