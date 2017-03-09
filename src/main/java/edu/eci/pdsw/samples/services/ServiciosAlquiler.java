@@ -81,8 +81,7 @@ public abstract class ServiciosAlquiler {
      * @param p el nuevo cliente
      * @pre p!=null
      * @pos el cliente queda disponible para futuros alquileres
-     * @throws ExcepcionServiciosAlquiler si el cliente ya se encuentra
-     * registrado
+     * @throws ExcepcionServiciosAlquiler No existe el cliente con el documento
      */
     public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
 
