@@ -28,21 +28,31 @@
                 <p:column headerText="Vetado">
                     <h:outputText value="#{cliente.vetado}" />
                 </p:column>
-                <p:commandButton value="Inspeccionar" action="RegistroClienteItem"/>
+                <f:facet name="footer">
+                    <p:commandButton value="Inspeccionar" action="RegistroClienteItem.xhtml"/>
+                </f:facet>
+                
+
             </p:dataTable>
+
             <br/>
             Agregar nuevo Cliente: 
-            NOMBRE:
+            <br/>
+            NOMBRE:   
             <h:inputText value="#{AlquilerItems.nombre}"/>
-            DOCUMENTO:
+            <br/>
+            DOCUMENTO: 
             <h:inputText value="#{AlquilerItems.documento}"/>
-            TELEFONO:
+            <br/>
+            TELEFONO:  
             <h:inputText value="#{AlquilerItems.telefono}"/>
-            DIRECCION:
+            <br/>
+            DIRECCION: 
             <h:inputText value="#{AlquilerItems.direccion}"/>
-            EMAIL:
+            <br/>
+            EMAIL:     
             <h:inputText value="#{AlquilerItems.email}"/>
-
+            <br/>
             <p:commandButton value="Cliente Nuevo" actionListener="#{AlquilerItems.clienteNuevo()}" update="clientes"/>
 
 
