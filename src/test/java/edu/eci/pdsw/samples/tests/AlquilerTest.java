@@ -90,7 +90,7 @@ public class AlquilerTest {
         
         sa.registrarAlquilerCliente(java.sql.Date.valueOf("2005-12-20"), 1212, item, 0);
         //prueba: dias de alquiler
-        assertEquals("El cliente tiene un numero de identificacion valido", 0, sa.consultarCliente(1212).getDocumento());
+        assertEquals("El cliente tiene un numero de identificacion valido", 1212, sa.consultarCliente(1212).getDocumento());
     }        
     
     
